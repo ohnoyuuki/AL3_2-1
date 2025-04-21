@@ -33,8 +33,7 @@ void GameScene::Draw()
 
 	Model::PostDraw();
 
-	//自キャラの描画
-	player_->Draw();
+	
 }
 // デストラクタ
 GameScene::~GameScene()
