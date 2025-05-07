@@ -1,7 +1,10 @@
 #pragma once
 #include "KamataEngine.h"
 #include "Player.h"
-class GameScene {
+#include <vector>
+
+class GameScene
+{
 public:
 	// 初期化
 	void Initialize();
@@ -9,7 +12,7 @@ public:
 	void Update();
 	// 描画
 	void Draw();
-	//デストラクタ
+	// デストラクタ
 	~GameScene();
 
 	Player* player_ = nullptr;
@@ -19,9 +22,16 @@ private:
 
 	KamataEngine::Model* model_ = nullptr;
 
+	KamataEngine::Model* modelBlock_ = nullptr;
+
 	KamataEngine::WorldTransform worldTransform_;
 
 	KamataEngine::Camera camera_;
 
 	KamataEngine::DebugCamera* debugCamera_ = nullptr;
+
+	std::vector<std::vector<KamataEngine::WorldTransform*>> worldTransformBlocks_;
+
+	bool isDebugCameraActive_ = false;
+
 };
