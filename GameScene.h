@@ -2,10 +2,21 @@
 #include "KamataEngine.h"
 #include "Player.h"
 #include <vector>
+#include"Skydome.h"
+
 
 class GameScene
 {
 public:
+
+	KamataEngine::Model* model_ = nullptr;
+
+	KamataEngine::Model* modelBlock_ = nullptr;
+
+	KamataEngine::Model* modelSkydome_ = nullptr; 
+
+	KamataEngine::Model* modelPlayer_ = nullptr;
+
 	// 初期化
 	void Initialize();
 	// 更新
@@ -17,12 +28,12 @@ public:
 
 	Player* player_ = nullptr;
 
+	Skydome* skydome_ = nullptr;
+
 private:
-	uint32_t textureHandle_ = 0;
+	
 
-	KamataEngine::Model* model_ = nullptr;
 
-	KamataEngine::Model* modelBlock_ = nullptr;
 
 	KamataEngine::WorldTransform worldTransform_;
 
@@ -33,5 +44,6 @@ private:
 	std::vector<std::vector<KamataEngine::WorldTransform*>> worldTransformBlocks_;
 
 	bool isDebugCameraActive_ = false;
+
 
 };

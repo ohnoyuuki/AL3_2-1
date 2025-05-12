@@ -2,16 +2,18 @@
 #include "MyMath.h"
 
 using namespace KamataEngine;
-// 初期化
+// 初期化/////////////////////////////////////////////////////////////
 void GameScene::Initialize()
 {
-	textureHandle_ = TextureManager::Load("uvChecker.png");
 
-	;
 
 	model_ = KamataEngine::Model::Create();
 
-	modelBlock_ = Model::CreateFromOBJ("cube");
+	modelBlock_ = Model::CreateFromOBJ("block");
+
+	modelSkydome_ = Model::CreateFromOBJ("skydome", true);
+
+	modelPlayer_ = Model::CreateFromOBJ("player");
 
 	worldTransform_.Initialize();
 
@@ -19,7 +21,12 @@ void GameScene::Initialize()
 	// 自キャラの生成
 	player_ = new Player();
 	// 自キャラの初期化
-	player_->Initialize(model_, textureHandle_, &camera_);
+	player_->Initialize(modelPlayer_,&camera_);
+
+	// 生成
+	skydome_ = new Skydome();
+	// 初期化
+	skydome_->Initialize(modelSkydome_, &camera_);
 
 	// 要素数
 	const uint32_t kNumBlockVirtical = 10;
@@ -52,8 +59,10 @@ void GameScene::Initialize()
 	}
 	debugCamera_ = new DebugCamera(1280, 720);
 
+	
+
 }
-// 更新
+// 更新/////////////////////////////////////////////////////////////////////////////////////
 void GameScene::Update()
 {
 	// 自キャラの更新
@@ -99,8 +108,10 @@ void GameScene::Update()
 		camera_.UpdateMatrix();
 	}
 
+	skydome_->Update();
+
 }
-// 描画
+// 描画/////////////////////////////////////////////////////////////////////////////////
 void GameScene::Draw() 
 {
 	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
@@ -121,17 +132,21 @@ void GameScene::Draw()
 		}
 	}
 
+	
+
+	skydome_->Draw();
+	player_->Draw();
+
 	Model::PostDraw();
 }
-// デストラクタ
+// デストラクタ////////////////////////////////////////////////////////////////////////////////
 GameScene::~GameScene()
 {
 	delete model_;
 	// 自キャラの解放
 	delete player_;
 
-	//for (WorldTransform* worldTransformBlocks : worldTransformBlocks_)
-	//{}
+	
 	
 	
 	for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) 
@@ -144,4 +159,7 @@ GameScene::~GameScene()
 	worldTransformBlocks_.clear();
 	delete debugCamera_;
 
+	delete skydome_;
+
+	delete modelSkydome_;
 }
