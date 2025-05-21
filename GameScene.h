@@ -3,6 +3,7 @@
 #include "Player.h"
 #include <vector>
 #include"Skydome.h"
+#include"MapChipField.h"
 
 
 class GameScene
@@ -30,6 +31,11 @@ public:
 
 	Skydome* skydome_ = nullptr;
 
+	//表示ブロック
+	void GenerateBlocks();
+
+	MapChipField* mapChipField_;
+
 private:
 	
 
@@ -44,6 +50,4 @@ private:
 	std::vector<std::vector<KamataEngine::WorldTransform*>> worldTransformBlocks_;
 
 	bool isDebugCameraActive_ = false;
-
-
 };
