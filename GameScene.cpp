@@ -3,7 +3,8 @@
 
 using namespace KamataEngine;
 // 初期化/////////////////////////////////////////////////////////////
-void GameScene::Initialize() {
+void GameScene::Initialize()
+{
 
 	model_ = KamataEngine::Model::Create();
 
@@ -19,7 +20,10 @@ void GameScene::Initialize() {
 	// 自キャラの生成
 	player_ = new Player();
 	// 自キャラの初期化
-	player_->Initialize(modelPlayer_, &camera_);
+	//
+	// 
+	// 
+	// player_->Initialize(modelPlayer_, &camera_,playerPosition);
 
 	// 生成
 	skydome_ = new Skydome();
@@ -54,9 +58,16 @@ void GameScene::Initialize() {
 	mapChipField_ = new MapChipField;
 	mapChipField_->LoadMapChipCsv("Resources/blocks.csv");
 	GenerateBlocks();
+
+	//座標をマップ地プ番号で指定
+	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(1,18);
+	player_->Initialize(modelPlayer_, &camera_, playerPosition);
+
 }
+
 // 更新/////////////////////////////////////////////////////////////////////////////////////
-void GameScene::Update() {
+void GameScene::Update()
+{
 	// 自キャラの更新
 	player_->Update();
 	// ブロックの更新

@@ -1,6 +1,8 @@
 #include "MyMath.h"
 using namespace KamataEngine;
 using namespace MathUtility;
+#include <cmath>
+#include<numbers>
 
 KamataEngine::Matrix4x4 MakeAffineMatrix(KamataEngine::Vector3& scale, KamataEngine::Vector3& rotaion, KamataEngine::Vector3& translation) 
 {
@@ -22,3 +24,12 @@ KamataEngine::Matrix4x4 MakeAffineMatrix(KamataEngine::Vector3& scale, KamataEng
 	return matWorld;
 
 }
+
+float EaseInOut(float x1, float x2, float t)
+{
+	
+	float easedT = -(std::cosf(std::numbers::pi_v<float> * t) - 1.0f) / 2.0f;
+
+	return Lerp(x1, x2, easedT);
+}
+
