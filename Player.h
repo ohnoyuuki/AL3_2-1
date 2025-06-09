@@ -39,6 +39,9 @@ public:
 	//ジャンプ初速（上方向
 	static inline const float kJumpAcceleration = 2.0f;
 
+	//毎フレーム追従
+	const KamataEngine::WorldTransform& GetWorldTransform() const { return worldTransform_; }
+
 private:
 	//ワールド変換データ
 	KamataEngine::WorldTransform worldTransform_;

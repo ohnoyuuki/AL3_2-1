@@ -4,6 +4,7 @@
 #include <vector>
 #include"Skydome.h"
 #include"MapChipField.h"
+#include"CameraController.h"
 
 
 class GameScene
@@ -36,6 +37,8 @@ public:
 
 	MapChipField* mapChipField_;
 
+	CameraController* cameraController_;
+
 private:
 	
 
@@ -50,4 +53,6 @@ private:
 	std::vector<std::vector<KamataEngine::WorldTransform*>> worldTransformBlocks_;
 
 	bool isDebugCameraActive_ = false;
+
+
 };
