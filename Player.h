@@ -42,6 +42,9 @@ public:
 	//毎フレーム追従
 	const KamataEngine::WorldTransform& GetWorldTransform() const { return worldTransform_; }
 
+	//速度加算
+	const KamataEngine::Vector3& GetVelocity() const { return velocity_; }
+
 private:
 	//ワールド変換データ
 	KamataEngine::WorldTransform worldTransform_;
@@ -50,7 +53,7 @@ private:
 	
 	KamataEngine::Camera* camera_ = nullptr;
 
-	 KamataEngine::Vector3 velocity_ = {};
+	KamataEngine::Vector3 velocity_ = {};
 
 	 LRDirection lrDirection_ = LRDirection::kRight;
 
